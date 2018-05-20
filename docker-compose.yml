@@ -1,0 +1,18 @@
+version: '2'
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: docker/app/Dockerfile
+    ports:
+      - 100:80
+    volumes:
+      - .:/var/www/html
+  mysql:
+    build:
+      context: ./
+      dockerfile: docker/mysql/Dockerfile
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./docker/dump:/var/dump
